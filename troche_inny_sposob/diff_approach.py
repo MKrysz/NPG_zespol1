@@ -42,7 +42,7 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
                   [sg.Button('1'), sg. Button('2')]]
         window2 = sg.Window('Wybierz komorke pamieci', layout2)
 
-        event2, values2 = window2.read()
+        event2, values2 = window2.read()    #TODO: event2, values2, window2 - do reformatu, żeby nazwy zmiennych bardziej odzwierciedlały czego dotyczą
         if event2 == '1':
             komorka_mem = 1
             if komorka_mem == 1:
@@ -61,7 +61,7 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
 
         window3 = sg.Window('Wybierz pierwsza komorke pamieci', layout3)
 
-        event3, values3 = window3.read()
+        event3, values3 = window3.read()    #TODO: event3, values3, window3 - do reformatu, żeby nazwy zmiennych bardziej odzwierciedlały czego dotyczą
 
         if event3 == '1':
             add_mem_1 = matrix1
@@ -75,7 +75,7 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
 
         window4 = sg.Window('Wybierz pierwsza komorke pamieci', layout4)
 
-        event4, values4 = window4.read()
+        event4, values4 = window4.read()    #TODO: event4, values4, window4 - do reformatu, żeby nazwy zmiennych bardziej odzwierciedlały czego dotyczą
 
         if event4 == '1':
             add_mem_2 = matrix1
@@ -93,7 +93,7 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
 
         window5 = sg.Window('Wybierz komorke pamieci', layout5)
 
-        event5, values5 = window5.read()
+        event5, values5 = window5.read()    #TODO: event5, values5, window5 - do reformatu, żeby nazwy zmiennych bardziej odzwierciedlały czego dotyczą
 
         if event5 == '1':
             matrix1 = []
