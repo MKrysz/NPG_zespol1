@@ -5,8 +5,7 @@ matrix1 = []
 matrix2 = []
 
 
-def transform():
-
+def transform():    #Ta funkcja odpowiada za przekształcenie otrzymywanego od GUI słownika na listę, z której tworzona jest macierz, na której operacje wykonuje NumPy
     dictList = list(values.values())
 
     row1 = []
