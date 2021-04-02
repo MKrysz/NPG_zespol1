@@ -83,7 +83,9 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
             add_mem_2 = matrix2
             window4.close()
 
-        print(np.add(add_mem_1, add_mem_2))
+        print(np.add(add_mem_1, add_mem_2)) #   FIXME: "Name 'add_mem_1' / 'add_mem_2' can be undefined" - wynika to z faktu,
+                                            #   że jeżeli wybierze się inną opcję, która nie określi definicji w/w zmiennych, to będą niezdefiniowane;
+                                            #   chyba nie ma się czym przejmować, bo takiego przypadku nie będzie
 
     elif event == 'Clean':  #FIXME: Znalezc sposob na zapobiegniecie sytuacji,
                             #   gdzie po wyczyszczeniu komorki pamieci wymiar macierzy spada do 0 - wypelnienie macierzy zerami?
