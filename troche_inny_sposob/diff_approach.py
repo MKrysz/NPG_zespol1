@@ -1,16 +1,16 @@
 import numpy as np
 import PySimpleGUI as sg
 
-matrix0 = np.asarray([0,0,0,0])
-matrix1 = np.asarray([0,0,0,0])
-matrix2 = np.asarray([0,0,0,0])
-matrix3 = np.asarray([0,0,0,0])
-matrix4 = np.asarray([0,0,0,0])
-matrix5 = np.asarray([0,0,0,0])
-matrix6 = np.asarray([0,0,0,0])
-matrix7 = np.asarray([0,0,0,0])
-matrix8 = np.asarray([0,0,0,0])
-matrix9 = np.asarray([0,0,0,0])
+matrix0 = np.asarray([[0,0],[0,0]])
+matrix1 = np.asarray([[0,0],[0,0]])
+matrix2 = np.asarray([[0,0],[0,0]])
+matrix3 = np.asarray([[0,0],[0,0]])
+matrix4 = np.asarray([[0,0],[0,0]])
+matrix5 = np.asarray([[0,0],[0,0]])
+matrix6 = np.asarray([[0,0],[0,0]])
+matrix7 = np.asarray([[0,0],[0,0]])
+matrix8 = np.asarray([[0,0],[0,0]])
+matrix9 = np.asarray([[0,0],[0,0]])
 
 
 def transform():    #Ta funkcja odpowiada za przekształcenie otrzymywanego od GUI słownika na listę, z której tworzona jest macierz, na której operacje wykonuje NumPy
@@ -190,34 +190,34 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
         event_clean, values_clean = window_clean.read()
 
         if event_clean == '0':
-            matrix0 = np.asarray([0,0,0,0])
+            matrix0 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '1':
-            matrix1 = np.asarray([0,0,0,0])
+            matrix1 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '2':
-            matrix2 = np.asarray([0,0,0,0])
+            matrix2 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '3':
-            matrix3 = np.asarray([0,0,0,0])
+            matrix3 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '4':
-            matrix4 = np.asarray([0,0,0,0])
+            matrix4 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '5':
-            matrix5 = np.asarray([0,0,0,0])
+            matrix5 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '6':
-            matrix6 = np.asarray([0,0,0,0])
+            matrix6 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '7':
-            matrix7 = np.asarray([0,0,0,0])
+            matrix7 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '8':
-            matrix8 = np.asarray([0,0,0,0])
+            matrix8 = np.asarray([[0,0],[0,0]])
             window_clean.close()
         elif event_clean == '9':
-            matrix9 = np.asarray([0,0,0,0])
+            matrix9 = np.asarray([[0,0],[0,0]])
             window_clean.close()
 
             #TODO: potegowanie, wyznacznik macierzy
@@ -492,7 +492,7 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
                 if event_scDiv_sc == 'OK':
                     scDiv_mem_2 = int(values_scDiv_sc[0])
                     window_scDiv_sc.close()
-                    with np.nditer(scDiv_mem_1, op_flags=['readwrite']) as it:
+                    with np.nditer(scDiv_mem_1, op_flags=['readwrite']) as it:  #np.ndinter - funkcja do łatwej iteracji po macierzy jako liście list, flaga 'readwrite' oznacza zamianę elementów macierzy zgodnie z daną instrukcją, zawartą w pętli for
                         for x in it:
                             x[...] = x / scDiv_mem_2
                     print(scDiv_mem_1)
