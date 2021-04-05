@@ -1,16 +1,16 @@
 import numpy as np
 import PySimpleGUI as sg
 
-matrix0 = []
-matrix1 = []
-matrix2 = []
-matrix3 = []
-matrix4 = []
-matrix5 = []
-matrix6 = []
-matrix7 = []
-matrix8 = []
-matrix9 = []
+matrix0 = np.asarray([0,0,0,0])
+matrix1 = np.asarray([0,0,0,0])
+matrix2 = np.asarray([0,0,0,0])
+matrix3 = np.asarray([0,0,0,0])
+matrix4 = np.asarray([0,0,0,0])
+matrix5 = np.asarray([0,0,0,0])
+matrix6 = np.asarray([0,0,0,0])
+matrix7 = np.asarray([0,0,0,0])
+matrix8 = np.asarray([0,0,0,0])
+matrix9 = np.asarray([0,0,0,0])
 
 
 def transform():    #Ta funkcja odpowiada za przekształcenie otrzymywanego od GUI słownika na listę, z której tworzona jest macierz, na której operacje wykonuje NumPy
@@ -35,8 +35,8 @@ sg.theme('Material2')
 
 layout = [[sg.InputText(), sg.InputText()],
           [sg.InputText(), sg.InputText()],
-          [sg.Button('Add'), sg.Button('Print'), sg.Button('Multiply')],
-          [sg.Button('Clean'), sg.Button('Mem'), sg.Button('Exit')]]
+          [sg.Button('Add'), sg.Button('Print'), sg.Button('Multiply'), sg.Button('Subtract')],
+          [sg.Button('Clean'), sg.Button('Mem'), sg.Button('Exit'), sg.Button('scDiv')]]
 
 window = sg.Window('Kalkulator 2x2', layout)
 
@@ -101,7 +101,7 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
                 matrix9 = transform()
                 window_mem.close()
     elif event == 'Print':
-        print(matrix0, '\n', matrix1, '\n', matrix2, '\n', matrix3, '\n', matrix4, '\n', matrix5, '\n', matrix6, '\n', matrix7, '\n', matrix8, '\n', matrix9)
+        print(matrix0, '\n', matrix1, '\n', matrix2, '\n', matrix3, '\n', matrix4, '\n', matrix5, '\n', matrix6, '\n', matrix7, '\n', matrix8, '\n', matrix9, '\n\n\n')
     elif event == 'Add':
         layout_add_mem1 = [[sg.Text('Wybierz macierz z pamieci')],
                            [sg.Button('0'), sg. Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'), sg.Button('5'), sg.Button('6'), sg.Button('7'), sg.Button('8'), sg.Button('9')]]
@@ -179,12 +179,9 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
             add_mem_2 = matrix9
             window_add_mem2.close()
 
-        print(np.add(add_mem_1, add_mem_2)) #   FIXME: "Name 'add_mem_1' / 'add_mem_2' can be undefined" - wynika to z faktu,
-                                            #   że jeżeli wybierze się inną opcję, która nie określi definicji w/w zmiennych, to będą niezdefiniowane;
-                                            #   chyba nie ma się czym przejmować, bo takiego przypadku nie będzie
+        print(np.add(add_mem_1, add_mem_2))
 
-    elif event == 'Clean':  #FIXME: Znalezc sposob na zapobiegniecie sytuacji,
-                            #   gdzie po wyczyszczeniu komorki pamieci wymiar macierzy spada do 0 - wypelnienie macierzy zerami?
+    elif event == 'Clean':
         layout_clean = [[sg.Text('Wybierz macierz z pamieci do wyczyszczenia')],
                         [sg.Button('0'), sg. Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'), sg.Button('5'), sg.Button('6'), sg.Button('7'), sg.Button('8'), sg.Button('9')]]
 
@@ -193,38 +190,37 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
         event_clean, values_clean = window_clean.read()
 
         if event_clean == '0':
-            matrix0 = []
+            matrix0 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '1':
-            matrix1 = []
+            matrix1 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '2':
-            matrix2 = []
+            matrix2 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '3':
-            matrix3 = []
+            matrix3 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '4':
-            matrix4 = []
+            matrix4 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '5':
-            matrix5 = []
+            matrix5 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '6':
-            matrix6 = []
+            matrix6 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '7':
-            matrix7 = []
+            matrix7 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '8':
-            matrix8 = []
+            matrix8 = np.asarray([0,0,0,0])
             window_clean.close()
         elif event_clean == '9':
-            matrix9 = []
+            matrix9 = np.asarray([0,0,0,0])
             window_clean.close()
 
-            #TODO: odejmowanie, mnożenie, dzielenie, potegowanie, pierwiastek tablicowy - opt., wyznacznik macierzy
-            #   wiecej komorek pamieci i rozszerzenie funkcji o mozliwosc ich uzywania
+            #TODO: potegowanie, wyznacznik macierzy
             #   mozliwosc zapisywania do pliku - opt.
     elif event == 'Multiply':
 
@@ -308,4 +304,203 @@ while True: #FIXME: Poszczegolne operacje dozwolone tylko na macierzach odpowied
 
         print(np.multiply(mul_mem_1, mul_mem_2))
 
+    elif event == 'Subtract':
+
+        layout_sub_mem1 = [[sg.Text('Wybierz macierz z pamieci')],
+                           [sg.Button('0'), sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'),
+                            sg.Button('5'), sg.Button('6'), sg.Button('7'), sg.Button('8'), sg.Button('9')]]
+
+        window_sub_mem1 = sg.Window('Wybierz pierwsza komorke pamieci', layout_sub_mem1)
+
+        event_scDiv_mem1, values_sub_mem1 = window_sub_mem1.read()
+
+        if event_scDiv_mem1 == '0':
+            sub_mem_1 = matrix0
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '1':
+            sub_mem_1 = matrix1
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '2':
+            sub_mem_1 = matrix2
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '3':
+            sub_mem_1 = matrix3
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '4':
+            sub_mem_1 = matrix4
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '5':
+            sub_mem_1 = matrix5
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '6':
+            sub_mem_1 = matrix6
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '7':
+            sub_mem_1 = matrix7
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '8':
+            sub_mem_1 = matrix8
+            window_sub_mem1.close()
+        elif event_scDiv_mem1 == '9':
+            sub_mem_1 = matrix9
+            window_sub_mem1.close()
+
+        layout_sub_mem2 = [[sg.Text('Wybierz macierz z pamieci')],
+                           [sg.Button('0'), sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'),
+                            sg.Button('5'), sg.Button('6'), sg.Button('7'), sg.Button('8'), sg.Button('9')]]
+
+        window_sub_mem2 = sg.Window('Wybierz pierwsza komorke pamieci', layout_sub_mem2)
+
+        event_sub_mem2, values_sub_mem2 = window_sub_mem2.read()
+
+        if event_sub_mem2 == '0':
+            sub_mem_2 = matrix0
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '1':
+            sub_mem_2 = matrix1
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '2':
+            sub_mem_2 = matrix2
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '3':
+            sub_mem_2 = matrix3
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '4':
+            sub_mem_2 = matrix4
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '5':
+            sub_mem_2 = matrix5
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '6':
+            sub_mem_2 = matrix6
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '7':
+            sub_mem_2 = matrix7
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '8':
+            sub_mem_2 = matrix8
+            window_sub_mem2.close()
+        elif event_sub_mem2 == '9':
+            sub_mem_2 = matrix9
+            window_sub_mem2.close()
+
+        print(np.subtract(sub_mem_1, sub_mem_2))
+
+    elif event == 'scDiv':
+
+        layout_scDiv_mem1 = [[sg.Text('Wybierz macierz z pamieci')],
+                             [sg.Button('0'), sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'),
+                              sg.Button('5'), sg.Button('6'), sg.Button('7'), sg.Button('8'), sg.Button('9')]]
+
+        window_scDiv_mem1 = sg.Window('Wybierz pierwsza komorke pamieci', layout_scDiv_mem1)
+
+        event_scDiv_mem1, values_scDiv_mem1 = window_scDiv_mem1.read()
+
+        if event_scDiv_mem1 == '0':
+            scDiv_mem_1 = matrix0
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '1':
+            scDiv_mem_1 = matrix1
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '2':
+            scDiv_mem_1 = matrix2
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '3':
+            scDiv_mem_1 = matrix3
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '4':
+            scDiv_mem_1 = matrix4
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '5':
+            scDiv_mem_1 = matrix5
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '6':
+            scDiv_mem_1 = matrix6
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '7':
+            scDiv_mem_1 = matrix7
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '8':
+            scDiv_mem_1 = matrix8
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == '9':
+            scDiv_mem_1 = matrix9
+            window_scDiv_mem1.close()
+        elif event_scDiv_mem1 == sg.WIN_CLOSED:
+            window_scDiv_mem1.close()
+
+        if event_scDiv_mem1 not in (sg.WIN_CLOSED, 'Exit'): #warunek, który powoduje nieotwieranie się okna wyboru,
+                                                            #między dzieleniem przez skalar a dzieleniem tablicowym
+                                                            #macierzy, gdy nie zostanie wybrana macierz do podzielenia
+            layout_scDiv_choice = [[sg.Text('Do you wish to divide by a matrix, or by a scalar?')],
+                                   [sg.Button('Matrix')], [sg.Button('Scalar')]]
+
+            window_scDiv_choice = sg.Window('Kalkulator 2x2', layout_scDiv_choice)
+
+            event_scDiv_choice, values_scDiv_choice = window_scDiv_choice.read()
+
+            if event_scDiv_choice == 'Matrix':
+                layout_scDiv_mem2 = [[sg.Text('Wybierz macierz z pamieci')],
+                                     [sg.Button('0'), sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'),
+                                      sg.Button('5'), sg.Button('6'), sg.Button('7'), sg.Button('8'), sg.Button('9')]]
+
+                window_scDiv_mem2 = sg.Window('Wybierz pierwsza komorke pamieci', layout_scDiv_mem2)
+
+                event_scDiv_mem2, values_scDiv_mem2 = window_scDiv_mem2.read()
+
+                if event_scDiv_mem2 == '0':
+                    scDiv_mem_2 = matrix0
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '1':
+                    scDiv_mem_2 = matrix1
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '2':
+                    scDiv_mem_2 = matrix2
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '3':
+                    scDiv_mem_2 = matrix3
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '4':
+                    scDiv_mem_2 = matrix4
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '5':
+                    scDiv_mem_2 = matrix5
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '6':
+                    scDiv_mem_2 = matrix6
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '7':
+                    scDiv_mem_2 = matrix7
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '8':
+                    scDiv_mem_2 = matrix8
+                    window_scDiv_mem2.close()
+                elif event_scDiv_mem2 == '9':
+                    scDiv_mem_2 = matrix9
+                    window_scDiv_mem2.close()
+                print(np.divide(scDiv_mem_1, scDiv_mem_2))
+                window_scDiv_choice.close()
+            elif event_scDiv_choice == 'Scalar':
+
+                layout_scDiv_sc = [[sg.Text('Input a scalar')], [sg.InputText()],
+                                   [sg.Button('OK')], [sg.Button('Cancel')]]
+
+                window_scDiv_sc = sg.Window('Kalkuator 2x2', layout_scDiv_sc)
+
+                event_scDiv_sc, values_scDiv_sc = window_scDiv_sc.read()
+
+                if event_scDiv_sc == 'OK':
+                    scDiv_mem_2 = int(values_scDiv_sc[0])
+                    window_scDiv_sc.close()
+                    with np.nditer(scDiv_mem_1, op_flags=['readwrite']) as it:
+                        for x in it:
+                            x[...] = x / scDiv_mem_2
+                    print(scDiv_mem_1)
+                elif event_scDiv_sc == sg.WINDOW_CLOSED or event_scDiv_sc == 'Cancel':
+                    window_scDiv_sc.close()
+                window_scDiv_choice.close()
+
 window.close()
+
+#TODO: znaleźć sposób na zapisywanie wyników obliczeń do komórek pamięci - może zapisywanie do pliku?
+#FIXME: poprawić wyświetlane w okienkach tekstowych instrukcje dla użytkownika
