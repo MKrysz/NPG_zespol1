@@ -1,3 +1,4 @@
+#main
 import numpy as np
 import PySimpleGUI as sg
 
