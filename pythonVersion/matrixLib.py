@@ -20,3 +20,6 @@ def matrixSubt(matrix1, matrix2):
 def matrixMul(matrix1, matrix2):
     return nmp.multiply(matrix1, matrix2)
  
+
+def matrixDet(matrix1):
+    return matrix1[0][0]*matrix1[1][1] - matrix1[0][1]*matrix1[1][0]
